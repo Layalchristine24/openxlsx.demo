@@ -278,6 +278,8 @@ write_penguins <- function(data_penguins,
     lockFormattingCells = FALSE # allows formatting cells (Kommentare)
   )
 
+  # openxlsx::openXL(wb)
+
   #--- freeze the first row ----------------------------------------------------
   # freeze the first row and the first column in ws_penguins
   openxlsx::freezePane(
