@@ -1,10 +1,10 @@
-#' @title Demo of openxlsx
+#' @title Write penguins datasets into an xlsx file using openxlsx.
 #'
 #' @description Write the palmerpenguins::penguins and palmerpenguins::penguins_raw
 #' datasets in an excel file and add some features.
 #'
-#' @details  Idea: create an excel file from scratch only using openxlsx and adding some
-#' features you could be interested in.
+#' @details Idea: create an excel file from scratch only using openxlsx and adding some
+#' features one could be interested in.
 #'
 #' For our first worksheet, we will use the palmerpenguins::penguins data set
 #' (species, island, bill length,bill depth, flipper length, body mass in grams,
@@ -22,7 +22,7 @@
 #' @return invisible
 #' @export
 #'
-#' @examples inst/examples/ex-write_penguins.R
+#' @example inst/examples/ex-write_penguins.R
 write_penguins <- function(data_penguins,
                            data_penguins_raw,
                            folder_xlsx_file) {

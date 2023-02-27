@@ -2,7 +2,7 @@
 % Please edit documentation in R/write_penguins.R
 \name{write_penguins}
 \alias{write_penguins}
-\title{Demo of openxlsx}
+\title{Write penguins datasets into an xlsx file using openxlsx.}
 \usage{
 write_penguins(data_penguins, data_penguins_raw, folder_xlsx_file)
 }
@@ -23,7 +23,7 @@ datasets in an excel file and add some features.
 }
 \details{
 Idea: create an excel file from scratch only using openxlsx and adding some
-features you could be interested in.
+features one could be interested in.
 
 For our first worksheet, we will use the palmerpenguins::penguins data set
 (species, island, bill length,bill depth, flipper length, body mass in grams,
@@ -34,5 +34,12 @@ contains all the variables and original names as downloaded (please refer to
 https://allisonhorst.github.io/palmerpenguins/ for more details).
 }
 \examples{
-inst/examples/ex-write_penguins.R
+#' @examples
+#' \dontrun{
+#' write_penguins(
+#'   data_penguins = palmerpenguins::penguins,
+#'   data_penguins_raw = palmerpenguins::penguins_raw,
+#'   folder_xlsx_file = tempdir()
+#' )
+#' }
 }
