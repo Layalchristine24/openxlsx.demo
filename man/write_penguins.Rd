@@ -4,9 +4,13 @@
 \alias{write_penguins}
 \title{Demo of openxlsx}
 \usage{
-write_penguins(folder_xlsx_file)
+write_penguins(data_penguins, data_penguins_raw, folder_xlsx_file)
 }
 \arguments{
+\item{data_penguins}{dataset penguins.}
+
+\item{data_penguins_raw}{dataset penguins_raw.}
+
 \item{folder_xlsx_file}{directory of the folder where you want to save the
 xlsx file.}
 }
@@ -30,5 +34,5 @@ contains all the variables and original names as downloaded (please refer to
 https://allisonhorst.github.io/palmerpenguins/ for more details).
 }
 \examples{
-write_penguins(folder_xlsx_file = tempdir())
+inst/examples/ex-write_penguins.R
 }

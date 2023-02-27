@@ -14,14 +14,18 @@
 #' contains all the variables and original names as downloaded (please refer to
 #' https://allisonhorst.github.io/palmerpenguins/ for more details).
 #'
+#' @param data_penguins dataset penguins.
+#' @param data_penguins_raw dataset penguins_raw.
 #' @param folder_xlsx_file directory of the folder where you want to save the
 #' xlsx file.
 #'
 #' @return invisible
 #' @export
 #'
-#' @examples write_penguins(folder_xlsx_file = tempdir())
-write_penguins <- function(folder_xlsx_file) {
+#' @examples inst/examples/ex-write_penguins.R
+write_penguins <- function(data_penguins,
+                           data_penguins_raw,
+                           folder_xlsx_file) {
   # create a new workbook
   wb <- openxlsx::createWorkbook()
 
@@ -44,7 +48,7 @@ write_penguins <- function(folder_xlsx_file) {
   openxlsx::writeData(
     wb = wb,
     sheet = ws_penguins,
-    x = palmerpenguins::penguins,
+    x = data_penguins,
     startRow = first_row,
     startCol = 1
   )
@@ -53,7 +57,7 @@ write_penguins <- function(folder_xlsx_file) {
   openxlsx::writeData(
     wb = wb,
     sheet = ws_penguins_raw,
-    x = palmerpenguins::penguins_raw,
+    x = data_penguins_raw,
     startRow = first_row,
     startCol = 1,
     withFilter = TRUE # filter on everywhere
