@@ -1,25 +1,13 @@
----
-output: github_document
----
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
 
 # openxlsx.demo
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of openxlsx.demo is to create an excel file from scratch only using 
-`openxlsx` and adding some features one could be interested in.
+The goal of openxlsx.demo is to create an excel file from scratch only
+using `openxlsx` and adding some features one could be interested in.
 
 ## Installation
 
@@ -31,9 +19,10 @@ You can install the development version of openxlsx.demo like so:
 
 ## Example
 
-This is a basic example which shows you how to create the demo xlsx file.
+This is a basic example which shows you how to create the demo xlsx
+file.
 
-```{r example}
+``` r
 library(openxlsx.demo)
 
 write_penguins(
