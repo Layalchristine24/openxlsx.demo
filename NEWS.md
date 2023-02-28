@@ -26,6 +26,88 @@
 
 - Add license to buildignore.
 
+- Add license.
+
+## Documentation
+
+- Update NEWS.
+
+- Insert title and description into DESCRIPTION.
+
+- Update NEWS.
+
+- Build README.
+
+- Build README.
+
+
+## Bug fixes
+
+- Remove 's' from @examples to avoid error when building the package.
+
+- Add example for write_penguins.
+
+## Features
+
+- Add other features for the demo.
+
+- Add color and border to unlock style.
+
+- Add openxl(wb).
+
+- First version to fix.
+
+## Build system, external dependencies
+
+- Add global variables.
+
+- Add dependencies to packages and functions.
+
+- Add dependency to margrittr.
+
+- Add license to buildignore.
+
+## Chore
+
+- Add license.
+
+## Documentation
+
+- Insert title and description into DESCRIPTION.
+
+- Update NEWS.
+
+- Build README.
+
+- Build README.
+
+
+## Bug fixes
+
+- Remove 's' from @examples to avoid error when building the package.
+
+- Add example for write_penguins.
+
+## Features
+
+- Add other features for the demo.
+
+- Add color and border to unlock style.
+
+- Add openxl(wb).
+
+- First version to fix.
+
+## Build system, external dependencies
+
+- Add global variables.
+
+- Add dependencies to packages and functions.
+
+- Add dependency to margrittr.
+
+- Add license to buildignore.
+
 ## Chore
 
 - Add license.
