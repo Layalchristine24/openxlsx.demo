@@ -35,19 +35,26 @@ write_penguins <- function(data_penguins,
     sheetName = "penguins"
   )
 
-  # first row where to write the data
-  first_row <- 1
-
   # add a new worksheet to the workbook
   ws_penguins_raw <- openxlsx::addWorksheet(
     wb = wb,
     sheetName = "penguins_raw"
   )
 
+  # first row where to write the data
+  first_row <- 1
+
+  #--- date formatting ---------------------------------------------------------
+  # add option for the date formatting
+  options(openxlsx.dateFormat = "yyyy/mm/dd")
+
   #--- modify data -------------------------------------------------------------
   # for demonstration purposes, add a column "consistency"
   data_penguins_mod <- data_penguins |>
-    dplyr::mutate(size = NA_character_)
+    dplyr::mutate(
+      size = NA_character_,
+      date_today = lubridate::today()
+    )
 
   #--- write data --------------------------------------------------------------
   # write the palmerpenguins::penguins data
@@ -205,7 +212,19 @@ write_penguins <- function(data_penguins,
   )
   # openxlsx::openXL(wb)
 
-  #--- lock cells and unlock others --------------------------------------------
+
+  #--- protect worksheet -------------------------------------------------------
+  # protect the worksheet ws_penguins
+  openxlsx::protectWorksheet(
+    wb = wb,
+    sheet = ws_penguins,
+    lockAutoFilter = FALSE, # allows filtering
+    lockFormattingCells = FALSE # allows formatting cells (Kommentare)
+  )
+
+  # openxlsx::openXL(wb)
+
+  #--- unlock specific cells ---------------------------------------------------
   # indices of columns to be unlocked if no value in a cell
   unlocked_cols <- c(
     which(names(data_penguins_mod) == "body_mass_g"),
@@ -241,11 +260,6 @@ write_penguins <- function(data_penguins,
     dplyr::filter(isna_cell == 1) %>%
     dplyr::arrange(rows, columns)
 
-  # subtable with only N/A cases
-  is_n_fslash_a_cases <- tib_indices %>%
-    dplyr::filter(isna_cell == 0) %>%
-    dplyr::arrange(rows, columns)
-
 
   # apply unlocked style to isna_cases cells
   openxlsx::addStyle(
@@ -257,30 +271,24 @@ write_penguins <- function(data_penguins,
     gridExpand = FALSE
   )
 
-  # apply locked style to N/A cells
-  openxlsx::addStyle(
+
+  # openxlsx::openXL(wb)
+
+  #--- add filter for several rows ---------------------------------------------
+  # add filtering possibility
+  openxlsx::addFilter(
     wb = wb,
     sheet = ws_penguins,
-    style = style_locked,
-    rows = first_row + is_n_fslash_a_cases$rows,
-    cols = is_n_fslash_a_cases$columns,
-    gridExpand = FALSE
+    rows = first_row,
+    cols = c(
+      which(names(data_penguins) == "body_mass_g"),
+      which(names(data_penguins) == "sex")
+    )
   )
 
   # openxlsx::openXL(wb)
 
-
-  # protect the worksheet ws_penguins
-  openxlsx::protectWorksheet(
-    wb = wb,
-    sheet = ws_penguins,
-    lockAutoFilter = FALSE, # allows filtering
-    lockFormattingCells = FALSE # allows formatting cells (Kommentare)
-  )
-
-  # openxlsx::openXL(wb)
-
-  #--- freeze the first row ----------------------------------------------------
+  #--- freeze the first row and first column -----------------------------------
   # freeze the first row and the first column in ws_penguins
   openxlsx::freezePane(
     wb = wb,
@@ -295,6 +303,14 @@ write_penguins <- function(data_penguins,
     sheet = ws_penguins_raw,
     firstRow = TRUE
   )
+
+  # openxlsx::openXL(wb)
+
+  #--- hide sheet --------------------------------------------------------------
+  # hide sheet "drop-down-values"
+  openxlsx::sheetVisibility(wb)[3] <- FALSE
+
+  # openxlsx::openXL(wb)
 
   #--- save the workbook -------------------------------------------------------
   # save the workbook
