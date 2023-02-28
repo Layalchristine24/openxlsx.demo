@@ -1,9 +1,9 @@
 Package: openxlsx.demo
-Title: What the Package Does (One Line, Title Case)
+Title: openxlsx demonstration
 Version: 0.0.0.9000
 Authors@R: 
     person("Layal Christine", "Lettry", , "layal@cynkra.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: Create an excel file from scratch only using openxlsx and adding some features one could be interested in.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

@@ -4,9 +4,9 @@
 \name{openxlsx.demo-package}
 \alias{openxlsx.demo}
 \alias{openxlsx.demo-package}
-\title{openxlsx.demo: What the Package Does (One Line, Title Case)}
+\title{openxlsx.demo: openxlsx demonstration}
 \description{
-What the package does (one paragraph).
+Create an excel file from scratch only using openxlsx and adding some features one could be interested in.
 }
 \author{
 \strong{Maintainer}: Layal Christine Lettry \email{layal@cynkra.com}
