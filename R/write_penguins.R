@@ -26,9 +26,15 @@
 write_penguins <- function(data_penguins,
                            data_penguins_raw,
                            folder_xlsx_file) {
+  #--- date formatting ---------------------------------------------------------
+  # add option for the date formatting
+  options(openxlsx.dateFormat = "yyyy/mm/dd")
+
+  #--- create workbook ---------------------------------------------------------
   # create a new workbook
   wb <- openxlsx::createWorkbook()
 
+  #--- create worksheet --------------------------------------------------------
   # add a new worksheet to the workbook
   ws_penguins <- openxlsx::addWorksheet(
     wb = wb,
@@ -41,12 +47,9 @@ write_penguins <- function(data_penguins,
     sheetName = "penguins_raw"
   )
 
+  #--- define first row --------------------------------------------------------
   # first row where to write the data
   first_row <- 1
-
-  #--- date formatting ---------------------------------------------------------
-  # add option for the date formatting
-  options(openxlsx.dateFormat = "yyyy/mm/dd")
 
   #--- modify data -------------------------------------------------------------
   # for demonstration purposes, add a column "consistency"
