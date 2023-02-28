@@ -19,7 +19,9 @@ style_unlocked <- openxlsx::createStyle(
   fontSize = 12,
   halign = "left",
   valign = "top",
-  locked = FALSE
+  locked = FALSE,
+  fgFill = "#B6D7A8",
+  border = c("top", "bottom", "left", "right")
 )
 
 # define style style_locked
