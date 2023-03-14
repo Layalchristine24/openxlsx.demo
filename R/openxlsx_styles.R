@@ -35,3 +35,29 @@ style_locked <- openxlsx::createStyle(
   fgFill = "#5b5b5b",
   wrapText = TRUE
 )
+
+# define style gray
+style_gray <- openxlsx::createStyle(
+  bgFill = "#AAAAAA"
+)
+
+# define style blue
+style_blue <- openxlsx::createStyle(
+  bgFill = "#6FA8DC"
+)
+
+# define style gray
+style_green <- openxlsx::createStyle(
+  bgFill = "#00AA00"
+)
+
+# define style yellow
+style_yellow <- openxlsx::createStyle(
+  bgFill = "#CCCC00"
+)
+
+# define style red
+style_red <- openxlsx::createStyle(
+  bgFill = "#CC0000",
+  fontColour = "#EEEEEE"
+)

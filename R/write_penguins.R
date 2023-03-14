@@ -171,10 +171,8 @@ write_penguins <- function(data_penguins,
     cols = which(names(data_penguins_mod) == "size"),
     rows = 2:(nrow(data_penguins_mod) + 1L),
     type = "contains",
-    rule = "huge",
-    style = openxlsx::createStyle(
-      bgFill = "#AAAAAA"
-    )
+    rule = "huge", # condition under which to apply the formatting
+    style = style_gray
   )
 
   openxlsx::conditionalFormatting(wb,
@@ -182,10 +180,8 @@ write_penguins <- function(data_penguins,
     cols = which(names(data_penguins_mod) == "size"),
     rows = 2:(nrow(data_penguins_mod) + 1L),
     type = "contains",
-    rule = "big",
-    style = openxlsx::createStyle(
-      bgFill = "#6FA8DC"
-    )
+    rule = "big", # condition under which to apply the formatting
+    style = style_blue
   )
 
   openxlsx::conditionalFormatting(wb,
@@ -193,10 +189,8 @@ write_penguins <- function(data_penguins,
     cols = which(names(data_penguins_mod) == "size"),
     rows = 2:(nrow(data_penguins_mod) + 1L),
     type = "contains",
-    rule = "normal",
-    style = openxlsx::createStyle(
-      bgFill = "#00AA00"
-    )
+    rule = "normal", # condition under which to apply the formatting
+    style = style_green
   )
 
   openxlsx::conditionalFormatting(wb,
@@ -204,10 +198,8 @@ write_penguins <- function(data_penguins,
     cols = which(names(data_penguins_mod) == "size"),
     rows = 2:(nrow(data_penguins_mod) + 1L),
     type = "contains",
-    rule = "small",
-    style = openxlsx::createStyle(
-      bgFill = "#CCCC00"
-    )
+    rule = "small", # condition under which to apply the formatting
+    style = style_yellow
   )
 
   openxlsx::conditionalFormatting(wb,
@@ -215,14 +207,10 @@ write_penguins <- function(data_penguins,
     cols = which(names(data_penguins_mod) == "size"),
     rows = 2:(nrow(data_penguins_mod) + 1L),
     type = "contains",
-    rule = "tiny",
-    style = openxlsx::createStyle(
-      bgFill = "#CC0000",
-      fontColour = "#EEEEEE"
-    )
+    rule = "tiny", # condition under which to apply the formatting
+    style = style_red
   )
   # openxlsx::openXL(wb)
-
 
   #--- protect worksheet -------------------------------------------------------
   # protect the worksheet ws_penguins
@@ -230,45 +218,35 @@ write_penguins <- function(data_penguins,
     wb = wb,
     sheet = ws_penguins,
     lockAutoFilter = FALSE, # allows filtering
-    lockFormattingCells = FALSE # allows formatting cells (Kommentare)
+    lockFormattingCells = FALSE # allows formatting cells
+  )
+
+  # openxlsx::openXL(wb)
+
+  #--- unlock column size ------------------------------------------------------
+
+  # apply unlocked style to size column
+  openxlsx::addStyle(
+    wb = wb,
+    sheet = ws_penguins,
+    style = style_unlocked,
+    rows = first_row + seq_len(nrow(data_penguins_mod)),
+    cols = which(names(data_penguins_mod) == "size"),
+    gridExpand = FALSE
   )
 
   # openxlsx::openXL(wb)
 
   #--- unlock specific cells ---------------------------------------------------
   # indices of columns to be unlocked if no value in a cell
-  unlocked_cols <- c(
-    which(names(data_penguins_mod) == "body_mass_g"),
-    which(names(data_penguins_mod) == "sex")
+  tib_indices <- find_cells_to_unlock(
+    data = data_penguins_mod,
+    "body_mass_g", "sex"
   )
-
-  # indices of the rows to be unlocked if no value for body_mass_g and sex
-  indices_isna_body_mass_g <- which(
-    is.na(data_penguins_mod$body_mass_g)
-  )
-  indices_isna_sex <- which(
-    is.na(data_penguins_mod$sex)
-  )
-
-  # filter all is_na cells
-  tib_indices <- tidyr::crossing(
-    # only the rows regarding if no value for body_mass_g
-    rows = c(indices_isna_body_mass_g, indices_isna_sex),
-    # only the columns for the variables Wert, Ampelwert and Begruendung
-    columns = unlocked_cols
-  ) %>%
-    dplyr::rowwise() %>%
-    dplyr::mutate(
-      isna_cell = dplyr::case_when(
-        # if the cell is empty, it means that it can be modified.
-        is.na(data_penguins_mod[[rows, columns]]) ~ 1,
-        TRUE ~ 0
-      )
-    )
 
   # subtable with only na cases
   isna_cases <- tib_indices %>%
-    dplyr::filter(isna_cell == 1) %>%
+    dplyr::filter(to_unlock == 1) %>%
     dplyr::arrange(rows, columns)
 
 
@@ -282,6 +260,25 @@ write_penguins <- function(data_penguins,
     gridExpand = FALSE
   )
 
+  # apply unlocked style to cells in 1st row of ws_penguins (for comments)
+  openxlsx::addStyle(
+    wb = wb,
+    sheet = ws_penguins,
+    style = style_unlocked,
+    rows = 1,
+    cols = seq_len(ncol(data_penguins_mod)),
+    gridExpand = TRUE
+  )
+
+  # apply unlocked style to cells in 1st row of ws_penguins_raw (for comments)
+  openxlsx::addStyle(
+    wb = wb,
+    sheet = ws_penguins_raw,
+    style = style_unlocked,
+    rows = 1,
+    cols = seq_len(ncol(data_penguins_raw)),
+    gridExpand = TRUE
+  )
 
   # openxlsx::openXL(wb)
 
@@ -303,8 +300,8 @@ write_penguins <- function(data_penguins,
   # freeze the first row and the first column in ws_penguins
   openxlsx::freezePane(
     wb = wb,
-    sheet = ws_penguins,
-    firstRow = TRUE,
+    sheet = ws_penguins, ,
+    firstActiveRow = first_row + 1L,
     firstCol = TRUE
   )
 
@@ -312,7 +309,7 @@ write_penguins <- function(data_penguins,
   openxlsx::freezePane(
     wb = wb,
     sheet = ws_penguins_raw,
-    firstRow = TRUE
+    firstActiveRow = first_row + 1L
   )
 
   # openxlsx::openXL(wb)
