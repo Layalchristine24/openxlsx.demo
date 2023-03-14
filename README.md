@@ -14,7 +14,8 @@ using `openxlsx` and adding some features one could be interested in.
 You can install the development version of openxlsx.demo like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+# install.packages("devtools")
+devtools::install_github("Layalchristine24/openxlsx.demo")
 ```
 
 ## Example

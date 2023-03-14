@@ -26,7 +26,8 @@ The goal of openxlsx.demo is to create an excel file from scratch only using
 You can install the development version of openxlsx.demo like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+# install.packages("devtools")
+devtools::install_github("Layalchristine24/openxlsx.demo")
 ```
 
 ## Example
