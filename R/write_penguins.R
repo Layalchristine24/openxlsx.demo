@@ -302,7 +302,7 @@ write_penguins <- function(data_penguins,
     wb = wb,
     sheet = ws_penguins, ,
     firstActiveRow = first_row + 1L,
-    firstCol = TRUE
+    firstActiveCol = 2
   )
 
   # freeze the first row in meta_ws_name
