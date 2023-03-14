@@ -26,10 +26,6 @@
 write_penguins <- function(data_penguins,
                            data_penguins_raw,
                            folder_xlsx_file) {
-  #--- date formatting ---------------------------------------------------------
-  # add option for the date formatting
-  options(openxlsx.dateFormat = "yyyy/mm/dd")
-
   #--- create workbook ---------------------------------------------------------
   # create a new workbook
   wb <- openxlsx::createWorkbook()
@@ -48,15 +44,14 @@ write_penguins <- function(data_penguins,
   )
 
   #--- define first row --------------------------------------------------------
-  # first row where to write the data
-  first_row <- 1
+  # first row where to write the data (set to 2 because we want to write comments)
+  first_row <- 2
 
   #--- modify data -------------------------------------------------------------
-  # for demonstration purposes, add a column "consistency"
+  # for demonstration purposes, add a column "size"
   data_penguins_mod <- data_penguins |>
     dplyr::mutate(
-      size = NA_character_,
-      date_today = lubridate::today()
+      size = NA_character_
     )
 
   #--- write data --------------------------------------------------------------
