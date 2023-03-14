@@ -18,7 +18,7 @@ find_cells_to_unlock <- function(data,
   unlocked_cols <- stringr::str_remove_all(names(args_unlocked_cols), '["]') %>%
     purrr::map_dbl(~ match(.x, names(data)))
 
-  # find rows regarding the max Bezugsjahr
+  # find cells which are NA
   tibble::tibble(rows = seq_len(nrow(data))) %>%
     tidyr::crossing(columns = unlocked_cols) %>%
     dplyr::rowwise() %>%
@@ -28,10 +28,6 @@ find_cells_to_unlock <- function(data,
         TRUE ~ 0L
       )
     ) %>%
-    dplyr::select(
-      rows,
-      columns,
-      to_unlock
-    ) %>%
+    dplyr::select(rows, columns, to_unlock) %>%
     dplyr::ungroup()
 }
