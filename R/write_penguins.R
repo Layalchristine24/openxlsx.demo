@@ -50,11 +50,14 @@ write_penguins <- function(data_penguins,
   first_row <- 2
 
   #--- modify data -------------------------------------------------------------
-  # for demonstration purposes, add a column "size"
+  # for demonstration purposes, add a column "any_comment" and "size"
   data_penguins_mod <- data_penguins |>
     dplyr::mutate(
-      size = NA_character_
+      size = NA_character_,
+      any_comment = "Please add your comment in this field if you feel something is missing."
     )
+
+  # View(data_penguins_mod)
 
   #--- write data --------------------------------------------------------------
   # write the palmerpenguins::penguins data
@@ -86,7 +89,7 @@ write_penguins <- function(data_penguins,
     wb = wb,
     sheet = ws_penguins,
     cols = seq_len(ncol(data_penguins_mod)),
-    widths = 20 # "auto"for automatic sizing
+    widths = 25 # "auto"for automatic sizing
   )
 
   # set all cols to a set width and wrap text in ws_penguins_raw
@@ -94,8 +97,10 @@ write_penguins <- function(data_penguins,
     wb = wb,
     sheet = ws_penguins_raw,
     cols = seq_len(ncol(data_penguins_raw)),
-    widths = 27
+    widths = 25
   )
+
+  # openxlsx::openXL(wb)
 
   # --- wrap text --------------------------------------------------------------
   # add style_body to wrap text in ws_penguins
@@ -146,12 +151,15 @@ write_penguins <- function(data_penguins,
     startCol = 1
   )
 
+  # openxlsx::openXL(wb)
+
   # add drop-downs
   openxlsx::dataValidation(
     wb = wb,
     sheet = ws_penguins,
     cols = which(names(data_penguins_mod) == "size"),
-    rows = first_row + 1:nrow(data_penguins_mod),
+    rows = first_row + seq_len(nrow(data_penguins_mod)),
+    operator = "equal",
     type = "list",
     value = "'drop-down-values'!$A$1:$A$5"
   )
