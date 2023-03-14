@@ -98,21 +98,23 @@ write_penguins <- function(data_penguins,
   )
 
   # --- wrap text --------------------------------------------------------------
-  # add style to wrap text in ws_penguins
+  # add style_body to wrap text in ws_penguins
+  # (see option 'wrapText = TRUE' in 'createStyle()')
   openxlsx::addStyle(
     wb = wb,
     sheet = ws_penguins,
-    style = style_wraptext,
+    style = style_body,
     rows = first_row + seq_len(nrow(data_penguins_mod)),
     cols = seq_len(ncol(data_penguins_mod)),
     gridExpand = TRUE # apply style to all combinations of rows and cols
   )
 
-  # add style to wrap text in ws_penguins_raw
+  # add style_body to wrap text in ws_penguins_raw
+  # (see option 'wrapText = TRUE' in 'createStyle()')
   openxlsx::addStyle(
     wb = wb,
     sheet = ws_penguins_raw,
-    style = style_wraptext,
+    style = style_body,
     rows = first_row + seq_len(nrow(data_penguins_raw)),
     cols = seq_len(ncol(data_penguins_raw)),
     gridExpand = TRUE # apply style to all combinations of rows and cols

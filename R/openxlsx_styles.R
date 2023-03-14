@@ -3,11 +3,12 @@ style_variables_names <- openxlsx::createStyle(
   fontSize = 12,
   halign = "left",
   valign = "top",
-  textDecoration = "bold"
+  textDecoration = "bold",
+  wrapText = TRUE
 )
 
 # create style to wrap text
-style_wraptext <- openxlsx::createStyle(
+style_body <- openxlsx::createStyle(
   fontSize = 12,
   halign = "left",
   valign = "top",
@@ -21,7 +22,8 @@ style_unlocked <- openxlsx::createStyle(
   valign = "top",
   locked = FALSE,
   fgFill = "#B6D7A8",
-  border = c("top", "bottom", "left", "right")
+  border = c("top", "bottom", "left", "right"),
+  wrapText = TRUE
 )
 
 # define style style_locked
@@ -30,5 +32,6 @@ style_locked <- openxlsx::createStyle(
   halign = "left",
   valign = "top",
   locked = TRUE,
-  fgFill = "#5b5b5b"
+  fgFill = "#5b5b5b",
+  wrapText = TRUE
 )
