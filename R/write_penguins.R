@@ -26,6 +26,8 @@
 write_penguins <- function(data_penguins,
                            data_penguins_raw,
                            folder_xlsx_file) {
+  # pkgload::load_all()
+
   #--- create workbook ---------------------------------------------------------
   # create a new workbook
   wb <- openxlsx::createWorkbook()
