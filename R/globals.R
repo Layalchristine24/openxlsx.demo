@@ -2,6 +2,7 @@ utils::globalVariables(
   c(
     "columns",
     "isna_cell",
-    "rows"
+    "rows",
+    "to_unlock"
   )
 )

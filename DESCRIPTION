@@ -13,5 +13,7 @@ Imports:
     lubridate,
     magrittr,
     openxlsx,
+    purrr,
     stringr,
+    tibble,
     tidyr
