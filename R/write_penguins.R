@@ -97,7 +97,7 @@ write_penguins <- function(data_penguins,
     wb = wb,
     sheet = ws_penguins_raw,
     cols = seq_len(ncol(data_penguins_raw)),
-    widths = 25
+    widths = 25 # "auto"for automatic sizing
   )
 
   # openxlsx::openXL(wb)
@@ -169,7 +169,7 @@ write_penguins <- function(data_penguins,
   openxlsx::conditionalFormatting(wb,
     sheet = ws_penguins,
     cols = which(names(data_penguins_mod) == "size"),
-    rows = 2:(nrow(data_penguins_mod) + 1L),
+    rows = first_row + seq_len(nrow(data_penguins_mod)),
     type = "contains",
     rule = "huge", # condition under which to apply the formatting
     style = style_gray
@@ -178,7 +178,7 @@ write_penguins <- function(data_penguins,
   openxlsx::conditionalFormatting(wb,
     sheet = ws_penguins,
     cols = which(names(data_penguins_mod) == "size"),
-    rows = 2:(nrow(data_penguins_mod) + 1L),
+    rows = first_row + seq_len(nrow(data_penguins_mod)),
     type = "contains",
     rule = "big", # condition under which to apply the formatting
     style = style_blue
@@ -187,7 +187,7 @@ write_penguins <- function(data_penguins,
   openxlsx::conditionalFormatting(wb,
     sheet = ws_penguins,
     cols = which(names(data_penguins_mod) == "size"),
-    rows = 2:(nrow(data_penguins_mod) + 1L),
+    rows = first_row + seq_len(nrow(data_penguins_mod)),
     type = "contains",
     rule = "normal", # condition under which to apply the formatting
     style = style_green
@@ -196,7 +196,7 @@ write_penguins <- function(data_penguins,
   openxlsx::conditionalFormatting(wb,
     sheet = ws_penguins,
     cols = which(names(data_penguins_mod) == "size"),
-    rows = 2:(nrow(data_penguins_mod) + 1L),
+    rows = first_row + seq_len(nrow(data_penguins_mod)),
     type = "contains",
     rule = "small", # condition under which to apply the formatting
     style = style_yellow
@@ -205,7 +205,7 @@ write_penguins <- function(data_penguins,
   openxlsx::conditionalFormatting(wb,
     sheet = ws_penguins,
     cols = which(names(data_penguins_mod) == "size"),
-    rows = 2:(nrow(data_penguins_mod) + 1L),
+    rows = first_row + seq_len(nrow(data_penguins_mod)),
     type = "contains",
     rule = "tiny", # condition under which to apply the formatting
     style = style_red
@@ -223,7 +223,7 @@ write_penguins <- function(data_penguins,
 
   # openxlsx::openXL(wb)
 
-  #--- unlock column size ------------------------------------------------------
+  #--- unlock column size and any_comment --------------------------------------
 
   # apply unlocked style to size column
   openxlsx::addStyle(
@@ -235,6 +235,15 @@ write_penguins <- function(data_penguins,
     gridExpand = FALSE
   )
 
+  # apply unlocked style to any_comment column
+  openxlsx::addStyle(
+    wb = wb,
+    sheet = ws_penguins,
+    style = style_unlocked,
+    rows = first_row + seq_len(nrow(data_penguins_mod)),
+    cols = which(names(data_penguins_mod) == "any_comment"),
+    gridExpand = FALSE
+  )
   # openxlsx::openXL(wb)
 
   #--- unlock specific cells ---------------------------------------------------
@@ -326,7 +335,7 @@ write_penguins <- function(data_penguins,
     wb = wb,
     file = file.path(
       folder_xlsx_file,
-      stringr::str_c(Sys.Date(), "penguins.xlsx", collapse = "_")
+      stringr::str_c(Sys.Date(), "penguins.xlsx", sep = "_")
     ),
     overwrite = TRUE
   )
