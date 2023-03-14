@@ -92,7 +92,16 @@ write_penguins <- function(data_penguins,
     widths = 20 # "auto"for automatic sizing
   )
 
-  # add style to wrap text
+  # set all cols to a set width and wrap text in ws_penguins_raw
+  openxlsx::setColWidths(
+    wb = wb,
+    sheet = ws_penguins_raw,
+    cols = seq_len(ncol(data_penguins_raw)),
+    widths = 27
+  )
+
+  # --- wrap text --------------------------------------------------------------
+  # add style to wrap text in ws_penguins
   openxlsx::addStyle(
     wb = wb,
     sheet = ws_penguins,
@@ -102,15 +111,7 @@ write_penguins <- function(data_penguins,
     gridExpand = TRUE # apply style to all combinations of rows and cols
   )
 
-  # set all cols to a set width and wrap text in ws_penguins_raw
-  openxlsx::setColWidths(
-    wb = wb,
-    sheet = ws_penguins_raw,
-    cols = seq_len(ncol(data_penguins_raw)),
-    widths = 27
-  )
-
-  # add style to wrap text
+  # add style to wrap text in ws_penguins_raw
   openxlsx::addStyle(
     wb = wb,
     sheet = ws_penguins_raw,
@@ -277,7 +278,7 @@ write_penguins <- function(data_penguins,
 
   # openxlsx::openXL(wb)
 
-  #--- add filter for several rows ---------------------------------------------
+  #--- add filter for several variables ----------------------------------------
   # add filtering possibility
   openxlsx::addFilter(
     wb = wb,
