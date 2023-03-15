@@ -4,6 +4,8 @@ style_variables_names <- openxlsx::createStyle(
   halign = "left",
   valign = "top",
   textDecoration = "bold",
+  border = c("top", "bottom", "left", "right"),
+  borderStyle = "medium",
   wrapText = TRUE
 )
 

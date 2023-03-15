@@ -55,7 +55,9 @@ write_penguins <- function(data_penguins,
     dplyr::mutate(
       size = NA_character_,
       any_comment = "Please add your comment in this field if you feel something is missing."
-    )
+    ) %>%
+    # rearrange the columns to have 'year' as the first column
+    dplyr::select(year, everything())
 
   # View(data_penguins_mod)
 
@@ -250,7 +252,7 @@ write_penguins <- function(data_penguins,
   # indices of columns to be unlocked if no value in a cell
   tib_indices <- find_cells_to_unlock(
     data = data_penguins_mod,
-    "body_mass_g", "sex"
+    "bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g", "sex"
   )
 
   # subtable with only na cases
@@ -298,8 +300,9 @@ write_penguins <- function(data_penguins,
     sheet = ws_penguins,
     rows = first_row,
     cols = c(
-      which(names(data_penguins) == "body_mass_g"),
-      which(names(data_penguins) == "sex")
+      which(names(data_penguins_mod) == "year"),
+      which(names(data_penguins_mod) == "species"),
+      which(names(data_penguins_mod) == "island")
     )
   )
 
