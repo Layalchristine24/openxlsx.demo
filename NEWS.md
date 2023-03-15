@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+## Features
+
+- Add columns to find NAs and rearrange the column.
+
+
 # openxlsx.demo 0.0.0.9001
 
 ## Bug fixes
