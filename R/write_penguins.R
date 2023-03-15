@@ -50,14 +50,7 @@ write_penguins <- function(data_penguins,
   first_row <- 2
 
   #--- modify data -------------------------------------------------------------
-  # for demonstration purposes, add a column "any_comment" and "size"
-  data_penguins_mod <- data_penguins |>
-    dplyr::mutate(
-      size = NA_character_,
-      any_comment = "Please add your comment in this field if you feel something is missing."
-    ) %>%
-    # rearrange the columns to have 'year' as the first column
-    dplyr::select(year, everything())
+  data_penguins_mod <- prepare_penguins_mod(data_penguins)
 
   # View(data_penguins_mod)
 
@@ -256,8 +249,8 @@ write_penguins <- function(data_penguins,
   )
 
   # subtable with only na cases
-  isna_cases <- tib_indices %>%
-    dplyr::filter(to_unlock == 1) %>%
+  isna_cases <- tib_indices |>
+    dplyr::filter(to_unlock == 1) |>
     dplyr::arrange(rows, columns)
 
 
