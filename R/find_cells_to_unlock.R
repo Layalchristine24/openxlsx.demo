@@ -14,17 +14,17 @@ find_cells_to_unlock <- function(data,
                                  ...) {
   # indices of columns to be unlocked
   args_unlocked_cols <- tibble::lst(...)
-  unlocked_cols <- stringr::str_remove_all(names(args_unlocked_cols), '["]') %>%
+  unlocked_cols <- stringr::str_remove_all(names(args_unlocked_cols), '["]') |>
     purrr::map_dbl(~ match(.x, names(data)))
 
   # find cells which are NA
-  tibble::tibble(rows = seq_len(nrow(data))) %>%
-    tidyr::crossing(columns = unlocked_cols) %>%
+  tibble::tibble(rows = seq_len(nrow(data))) |>
+    tidyr::crossing(columns = unlocked_cols) |>
     dplyr::mutate(
       to_unlock = purrr::map2_int(rows, columns, function(row, col) {
         dplyr::if_else(is.na(data[[row, col]]), 1L, 0L)
       })
-    ) %>%
-    dplyr::select(rows, columns, to_unlock) %>%
+    ) |>
+    dplyr::select(rows, columns, to_unlock) |>
     dplyr::ungroup()
 }

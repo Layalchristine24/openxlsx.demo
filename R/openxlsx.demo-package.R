@@ -9,7 +9,6 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr rowwise
 #' @importFrom lubridate today
-#' @importFrom magrittr %>%
 #' @importFrom openxlsx addFilter
 #' @importFrom openxlsx createStyle
 #' @importFrom purrr map_dbl
