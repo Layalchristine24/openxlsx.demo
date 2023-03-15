@@ -15,4 +15,5 @@ Imports:
     purrr,
     stringr,
     tibble,
-    tidyr
+    tidyr,
+    tidyselect

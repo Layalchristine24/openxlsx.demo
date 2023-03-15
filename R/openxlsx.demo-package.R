@@ -16,5 +16,6 @@
 #' @importFrom stringr str_c
 #' @importFrom tibble tibble
 #' @importFrom tidyr crossing
+#' @importFrom tidyselect everything
 ## usethis namespace: end
 NULL
