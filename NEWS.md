@@ -1,5 +1,36 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# openxlsx.demo 0.0.0.9002
+
+## Bug fixes
+
+- Add some fixes to the code.
+
+- Add tidyselect::everything.
+
+## Features
+
+- Add example for find_cells_to_unlock.
+
+- Write function prepare_penguins_mod.
+
+- Add columns to find NAs and rearrange the column.
+
+## Build system, external dependencies
+
+- Add dependency.
+
+- Remove dependy to magrittr::%>%.
+
+## Documentation
+
+- Update NAMESPACE.
+
+- Update man Rd file.
+
+- Update NEWS.
+
+
 ## Features
 
 - Add columns to find NAs and rearrange the column.
