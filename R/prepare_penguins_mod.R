@@ -14,5 +14,5 @@ prepare_penguins_mod <- function(data) {
       any_comment = "Please add your comment in this field if you feel something is missing."
     ) |>
     # rearrange the columns to have 'year' as the first column
-    dplyr::select("year", everything()) # use quotes to select global variables
+    dplyr::select("year", tidyselect::everything()) # use quotes to select global variables
 }
