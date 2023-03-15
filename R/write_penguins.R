@@ -124,7 +124,7 @@ write_penguins <- function(data_penguins,
 
   #--- add drop-down values to size --------------------------------------------
   # add worksheet "Drop-down values" to the workbook
-  openxlsx::addWorksheet(
+  ws_drop_down_values <- openxlsx::addWorksheet(
     wb = wb,
     sheetName = "drop-down-values"
   )
@@ -305,7 +305,7 @@ write_penguins <- function(data_penguins,
   # freeze the first row and the first column in ws_penguins
   openxlsx::freezePane(
     wb = wb,
-    sheet = ws_penguins, ,
+    sheet = ws_penguins,
     firstActiveRow = first_row + 1L,
     firstActiveCol = 2
   )
@@ -321,7 +321,7 @@ write_penguins <- function(data_penguins,
 
   #--- hide sheet --------------------------------------------------------------
   # hide sheet "drop-down-values"
-  openxlsx::sheetVisibility(wb)[3] <- FALSE
+  openxlsx::sheetVisibility(wb)[ws_drop_down_values] <- FALSE
 
   # openxlsx::openXL(wb)
 
