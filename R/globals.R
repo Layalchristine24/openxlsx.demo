@@ -6,6 +6,7 @@ utils::globalVariables(
     "to_unlock",
     "id",
     "link",
-    "list_indices_indicators_to_link"
+    "list_indices_indicators_to_link",
+    "cell"
   )
 )

@@ -22,15 +22,15 @@ write_hyperlink <- function(dataset,
                             meta_ws_name,
                             wb) {
   hyperlink_tib <- dataset |>
-    tibble::rownames_to_column(var = "rowname") |>
+    # tibble::rownames_to_column(var = "rowname") |>
     mutate(
-      list_indices_indicators_to_link = purrr::map(
+      list_indices_indicators_to_link = as.integer(purrr::map(
         id,
         ~ match(
           .x,
           metadata$`Individual ID`
         )
-      ),
+      )),
       link = purrr::map(
         list_indices_indicators_to_link,
         ~ openxlsx::makeHyperlinkString(
@@ -41,26 +41,22 @@ write_hyperlink <- function(dataset,
         )
       ),
       # rewrite the link to make the change of a cell value reactive in the other sheet
+      cell = paste0(
+        meta_ws_name, "!",
+        LETTERS[which(colnames(metadata) == "Comments")],
+        list_indices_indicators_to_link + first_row
+      ),
       link_rewritten = paste0(
-        "=",
-        stringr::str_remove_all(
-          link,
-          paste(c("^(.*#['])", "(['])", "([\"][,].*$)"),
-            collapse = "|"
-          )
-        )
+        "=IF(", cell, '="","",', cell, ")"
       )
     )
 
   # write the hyperlink
-  hyperlink_tib |>
-    purrr::pwalk(\(link_rewritten, rowname, ...){
-      openxlsx::writeFormula(
-        wb = wb,
-        sheet = excel_sheet,
-        x = link_rewritten,
-        startCol = which(names(dataset) == "any_comment"),
-        startRow = as.integer(first_row) + as.integer(rowname)
-      )
-    })
+  openxlsx::writeFormula(
+    wb = wb,
+    sheet = excel_sheet,
+    x = hyperlink_tib$link_rewritten,
+    startCol = which(names(dataset) == "any_comment"),
+    startRow = as.integer(first_row) + 1L
+  )
 }

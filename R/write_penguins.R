@@ -47,7 +47,7 @@ write_penguins <- function(data_penguins,
 
   #--- define first row --------------------------------------------------------
   # first row where to write the data (set to 2 because we want to write comments)
-  first_row <- 2
+  first_row <- 2L
 
   #--- modify data -------------------------------------------------------------
   data_penguins_mod <- prepare_penguins_mod(
