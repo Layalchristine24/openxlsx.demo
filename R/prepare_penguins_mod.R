@@ -1,18 +1,21 @@
 #' Prepare the data penguins
 #'
-#' @param data tibble
+#' @param data tibble data_penguins
+#' @param data_raw tibble data_penguins_raw
 #'
 #' @return tibble
 #' @export
 #'
 #' @example inst/examples/ex-prepare_penguins_mod.R
-prepare_penguins_mod <- function(data) {
+prepare_penguins_mod <- function(data,
+                                 data_raw) {
   # for demonstration purposes, add a column "any_comment" and "size"
   data |>
     dplyr::mutate(
       size = NA_character_,
-      any_comment = "Please add your comment in this field if you feel something is missing."
+      any_comment = "Please add your comment in this field if you feel something is missing.",
+      id = data_raw$`Individual ID`
     ) |>
     # rearrange the columns to have 'year' as the first column
-    dplyr::select("year", tidyselect::everything()) # use quotes to select global variables
+    dplyr::select("year", "id", tidyselect::everything()) # use quotes to select global variables
 }
