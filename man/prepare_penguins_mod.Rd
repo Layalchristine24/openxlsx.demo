@@ -4,10 +4,12 @@
 \alias{prepare_penguins_mod}
 \title{Prepare the data penguins}
 \usage{
-prepare_penguins_mod(data)
+prepare_penguins_mod(data, data_raw)
 }
 \arguments{
-\item{data}{tibble}
+\item{data}{tibble data_penguins}
+
+\item{data_raw}{tibble data_penguins_raw}
 }
 \value{
 tibble

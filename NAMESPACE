@@ -2,6 +2,7 @@
 
 export(find_cells_to_unlock)
 export(prepare_penguins_mod)
+export(write_hyperlink)
 export(write_penguins)
 importFrom(dplyr,arrange)
 importFrom(dplyr,case_when)
