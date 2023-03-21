@@ -23,7 +23,7 @@ style_unlocked <- openxlsx::createStyle(
   halign = "left",
   valign = "top",
   locked = FALSE,
-  fgFill = "#B6D7A8",
+  fgFill = "#d9d2e9",
   border = c("top", "bottom", "left", "right"),
   wrapText = TRUE
 )
@@ -34,7 +34,8 @@ style_locked <- openxlsx::createStyle(
   halign = "left",
   valign = "top",
   locked = TRUE,
-  fgFill = "#5b5b5b",
+  fgFill = "#f4cccc",
+  border = c("top", "bottom", "left", "right"),
   wrapText = TRUE
 )
 
