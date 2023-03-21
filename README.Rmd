@@ -34,7 +34,7 @@ devtools::install_github("Layalchristine24/openxlsx.demo")
 
 This is a basic example which shows you how to create the demo xlsx file.
 
-```{r example}
+```{r example, message=FALSE, warning=FALSE}
 library(openxlsx.demo)
 
 data_penguins <- palmerpenguins::penguins

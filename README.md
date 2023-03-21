@@ -35,10 +35,6 @@ write_penguins(
   data_penguins_raw = data_penguins_raw,
   folder_xlsx_file = folder_xlsx_file
 )
-#> Warning in sprintf("<x14:dataValidation type=\"list\" allowBlank=\"%s\"
-#> showInputMessage=\"%s\" showErrorMessage=\"%s\">", : one argument not used by
-#> format '<x14:dataValidation type="list" allowBlank="%s" showInputMessage="%s"
-#> showErrorMessage="%s">'
 
 browseURL(folder_xlsx_file)
 ```
