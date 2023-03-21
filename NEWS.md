@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# openxlsx.demo 0.0.0.9004
+
+- Merge branch 'dev-layal'.
+
+
+
 # openxlsx.demo 0.0.0.9003
 
 ## Bug fixes

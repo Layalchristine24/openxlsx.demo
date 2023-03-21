@@ -1,6 +1,6 @@
 Package: openxlsx.demo
 Title: openxlsx demonstration
-Version: 0.0.0.9003
+Version: 0.0.0.9004
 Authors@R: 
     person("Layal Christine", "Lettry", , "layal@cynkra.com", role = c("aut", "cre"))
 Description: Create an excel file from scratch only using openxlsx and adding some features one could be interested in.
