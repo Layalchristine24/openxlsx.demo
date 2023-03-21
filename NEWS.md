@@ -1,5 +1,28 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# openxlsx.demo 0.0.0.9003
+
+## Bug fixes
+
+- Modify the styles.
+
+- Set a special width for any_comments.
+
+## Features
+
+- Add internal links.
+
+- Add id to sheet penguins.
+
+## Build system, external dependencies
+
+- Add global variables.
+
+## Documentation
+
+- Update Rd files and NAMESPACE.
+
+
 # openxlsx.demo 0.0.0.9002
 
 ## Bug fixes
