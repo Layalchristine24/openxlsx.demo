@@ -50,7 +50,10 @@ write_penguins <- function(data_penguins,
   first_row <- 2
 
   #--- modify data -------------------------------------------------------------
-  data_penguins_mod <- prepare_penguins_mod(data_penguins)
+  data_penguins_mod <- prepare_penguins_mod(
+    data = data_penguins,
+    data_raw = data_penguins_raw
+  )
 
   # View(data_penguins_mod)
 
@@ -322,6 +325,21 @@ write_penguins <- function(data_penguins,
   #--- hide sheet --------------------------------------------------------------
   # hide sheet "drop-down-values"
   openxlsx::sheetVisibility(wb)[ws_drop_down_values] <- FALSE
+
+  # openxlsx::openXL(wb)
+
+  #--- Internal Hyperlink ------------------------------------------------------
+  # internal hyperlink between any_comments (sheet penguins) and Comments (sheet penguins_raw)
+
+  # sheet data_ws_name should be linked to medata_ws_name
+  write_hyperlink(
+    dataset = data_penguins_mod,
+    metadata = data_penguins_raw,
+    excel_sheet = "penguins",
+    first_row = first_row,
+    meta_ws_name = "penguins_raw",
+    wb = wb
+  )
 
   # openxlsx::openXL(wb)
 
