@@ -3,6 +3,9 @@ utils::globalVariables(
     "columns",
     "isna_cell",
     "rows",
-    "to_unlock"
+    "to_unlock",
+    "id",
+    "link",
+    "list_indices_indicators_to_link"
   )
 )
