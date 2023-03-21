@@ -82,20 +82,20 @@ write_penguins <- function(data_penguins,
   # openxlsx::openXL(wb)
 
   # --- set columns width ------------------------------------------------------
-  # set all cols to a set width and wrap text in ws_penguins
+  # set all cols but any_comment to a specific width in ws_penguins
   openxlsx::setColWidths(
     wb = wb,
     sheet = ws_penguins,
-    cols = seq_len(ncol(data_penguins_mod)),
-    widths = 25 # "auto"for automatic sizing
+    cols = which(names(data_penguins_mod) != "any_comment"),
+    widths = 22 # "auto"for automatic sizing
   )
 
-  # set all cols to a set width and wrap text in ws_penguins_raw
+  # set all cols to a specific width in ws_penguins_raw
   openxlsx::setColWidths(
     wb = wb,
     sheet = ws_penguins_raw,
     cols = seq_len(ncol(data_penguins_raw)),
-    widths = 25 # "auto"for automatic sizing
+    widths = 22 # "auto"for automatic sizing
   )
 
   # openxlsx::openXL(wb)
@@ -221,7 +221,7 @@ write_penguins <- function(data_penguins,
 
   # openxlsx::openXL(wb)
 
-  #--- unlock column size and any_comment --------------------------------------
+  #--- unlock column size (ws_penguins) and Comments (ws_penguins_raw) ---------
 
   # apply unlocked style to size column
   openxlsx::addStyle(
@@ -233,15 +233,30 @@ write_penguins <- function(data_penguins,
     gridExpand = FALSE
   )
 
-  # apply unlocked style to any_comment column
+  # apply unlocked style to Comments column
+  openxlsx::addStyle(
+    wb = wb,
+    sheet = ws_penguins_raw,
+    style = style_unlocked,
+    rows = first_row + seq_len(nrow(data_penguins_raw)),
+    cols = which(names(data_penguins_raw) == "Comments"),
+    gridExpand = FALSE
+  )
+
+  # openxlsx::openXL(wb)
+
+  #--- lock column any_comments in ws_penguins ---------------------------------
+
+  # apply locked style to any_comment column
   openxlsx::addStyle(
     wb = wb,
     sheet = ws_penguins,
-    style = style_unlocked,
+    style = style_locked,
     rows = first_row + seq_len(nrow(data_penguins_mod)),
     cols = which(names(data_penguins_mod) == "any_comment"),
     gridExpand = FALSE
   )
+
   # openxlsx::openXL(wb)
 
   #--- unlock specific cells ---------------------------------------------------
@@ -329,7 +344,8 @@ write_penguins <- function(data_penguins,
   # openxlsx::openXL(wb)
 
   #--- Internal Hyperlink ------------------------------------------------------
-  # internal hyperlink between any_comments (sheet penguins) and Comments (sheet penguins_raw)
+  # internal hyperlink between any_comments (sheet penguins) and Comments (sheet
+  # penguins_raw)
 
   # sheet data_ws_name should be linked to medata_ws_name
   write_hyperlink(
@@ -339,6 +355,17 @@ write_penguins <- function(data_penguins,
     first_row = first_row,
     meta_ws_name = "penguins_raw",
     wb = wb
+  )
+
+  # Set column any_comment to a specific width in ws_penguins
+  # as the comments length is coming from another worksheet and the formula
+  # of the internal hyperlink is short, the wrap_text option does not work.
+  # Therefore, we need a larger width for the column any_comment.
+  openxlsx::setColWidths(
+    wb = wb,
+    sheet = ws_penguins,
+    cols = which(names(data_penguins_mod) == "any_comment"),
+    widths = 60 # "auto"for automatic sizing
   )
 
   # openxlsx::openXL(wb)
