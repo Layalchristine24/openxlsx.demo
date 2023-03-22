@@ -1,5 +1,18 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# openxlsx.demo 0.0.0.9005
+
+## Bug fixes
+
+- Replace NA_character_ by character vector.
+
+## Documentation
+
+- Update NEWS.
+
+- Fix README to not show warnings.
+
+
 ## Documentation
 
 - Fix README to not show warnings.
