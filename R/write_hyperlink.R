@@ -22,8 +22,8 @@ write_hyperlink <- function(dataset,
                             meta_ws_name,
                             wb) {
   hyperlink_tib <- dataset |>
-    # tibble::rownames_to_column(var = "rowname") |>
     mutate(
+      # find the metadata rows where id matches `Individual ID`
       list_indices_indicators_to_link = as.integer(purrr::map(
         id,
         ~ match(
@@ -31,21 +31,17 @@ write_hyperlink <- function(dataset,
           metadata$`Individual ID`
         )
       )),
-      link = purrr::map(
-        list_indices_indicators_to_link,
-        ~ openxlsx::makeHyperlinkString(
-          sheet = meta_ws_name,
-          row = .x + first_row,
-          col = which(names(metadata) == "Comments"),
-          text = metadata$Comments[[.x]]
-        )
-      ),
-      # rewrite the link to make the change of a cell value reactive in the other sheet
+      # write the link to make the change of a cell value in penguins_raw reactive
+      # in the other sheet
       cell = paste0(
         meta_ws_name, "!",
+        # get the capital letter for the excel column corresponding to the column
+        # index in the penguins_raw dataset
         LETTERS[which(colnames(metadata) == "Comments")],
         list_indices_indicators_to_link + first_row
       ),
+      # add an IF condition to get an empty cell if the resp. Comments value in
+      # penguins_raw is empty
       link_rewritten = paste0(
         "=IF(", cell, '="","",', cell, ")"
       )
