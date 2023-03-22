@@ -12,8 +12,8 @@ prepare_penguins_mod <- function(data,
   # for demonstration purposes, add a column "any_comment" and "size"
   data |>
     dplyr::mutate(
-      size = NA_character_,
-      any_comment = "Please add your comment in this field if you feel something is missing.",
+      size = character(length = nrow(data)),
+      any_comment = character(length = nrow(data)),
       id = data_raw$`Individual ID`
     ) |>
     # rearrange the columns to have 'year' as the first column
