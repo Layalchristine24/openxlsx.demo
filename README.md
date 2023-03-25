@@ -9,6 +9,19 @@
 The goal of openxlsx.demo is to create an excel file from scratch only
 using `openxlsx` and adding some features one could be interested in.
 
+## `openxlsx` Documentation
+
+You can find a description of the `openxlsx` functions by clicking on
+the following links:
+
+- [Homepage](https://ycphs.github.io/openxlsx/index.html)
+
+- [GitHub](https://github.com/ycphs/openxlsx)
+
+- [CRAN](https://cran.r-project.org/web/packages/openxlsx/openxlsx.pdf)
+
+- [RDocumentation](https://www.rdocumentation.org/packages/openxlsx/versions/4.2.5.2)
+
 ## Installation
 
 You can install the development version of openxlsx.demo like so:
