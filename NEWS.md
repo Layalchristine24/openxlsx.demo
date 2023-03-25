@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# openxlsx.demo 0.0.0.9007
+
+## Documentation
+
+- Add links to README.
+
+
 # openxlsx.demo 0.0.0.9006
 
 ## Bug fixes
