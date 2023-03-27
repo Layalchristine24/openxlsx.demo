@@ -210,11 +210,19 @@ write_penguins <- function(data_penguins,
   )
   # openxlsx::openXL(wb)
 
-  #--- protect worksheet -------------------------------------------------------
+  #--- protect worksheets ------------------------------------------------------
   # protect the worksheet ws_penguins
   openxlsx::protectWorksheet(
     wb = wb,
     sheet = ws_penguins,
+    lockAutoFilter = FALSE, # allows filtering
+    lockFormattingCells = FALSE # allows formatting cells
+  )
+
+  # protect the worksheet ws_penguins_raw
+  openxlsx::protectWorksheet(
+    wb = wb,
+    sheet = ws_penguins_raw,
     lockAutoFilter = FALSE, # allows filtering
     lockFormattingCells = FALSE # allows formatting cells
   )
