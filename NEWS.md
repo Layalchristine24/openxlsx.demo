@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# openxlsx.demo 0.0.0.9008
+
+## Bug fixes
+
+- Protect worksheet penguins_raw.
+
+
 # openxlsx.demo 0.0.0.9007
 
 ## Documentation
