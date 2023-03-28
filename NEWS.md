@@ -13,6 +13,19 @@
 - Add logo to README.
 
 
+## Features
+
+- Add date today.
+
+- Create logo.
+
+## Documentation
+
+- Update man folder.
+
+- Add logo to README.
+
+
 # openxlsx.demo 0.0.0.9009
 
 ## Testing
