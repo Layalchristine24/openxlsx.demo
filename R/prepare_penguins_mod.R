@@ -14,7 +14,8 @@ prepare_penguins_mod <- function(data,
     dplyr::mutate(
       size = character(length = nrow(data)),
       any_comment = character(length = nrow(data)),
-      id = data_raw$`Individual ID`
+      id = data_raw$`Individual ID`,
+      date_modification = lubridate::today()
     ) |>
     # rearrange the columns to have 'year' as the first column
     dplyr::select("year", "id", tidyselect::everything()) # use quotes to select global variables
