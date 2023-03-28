@@ -1,5 +1,27 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# openxlsx.demo 0.1.0
+
+## Features
+
+- Add date today.
+
+- Create logo.
+
+## Documentation
+
+- Update NEWS.
+
+- Update man folder.
+
+- Add logo to README.
+
+## Uncategorized
+
+- Merge branch 'main' of github.com:Layalchristine24/openxlsx.demo.
+
+
+
 ## Features
 
 - Add date today.
