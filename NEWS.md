@@ -1,5 +1,18 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+## Features
+
+- Add date today.
+
+- Create logo.
+
+## Documentation
+
+- Update man folder.
+
+- Add logo to README.
+
+
 # openxlsx.demo 0.0.0.9009
 
 ## Testing
