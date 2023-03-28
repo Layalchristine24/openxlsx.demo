@@ -6,6 +6,8 @@
 \alias{openxlsx.demo-package}
 \title{openxlsx.demo: openxlsx demonstration}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Create an excel file from scratch only using openxlsx and adding some features one could be interested in.
 }
 \author{

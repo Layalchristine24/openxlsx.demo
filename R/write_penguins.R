@@ -125,6 +125,20 @@ write_penguins <- function(data_penguins,
 
   # openxlsx::openXL(wb)
 
+  #--- date formatting ---------------------------------------------------------
+  # see https://ycphs.github.io/openxlsx/articles/Formatting.html#date-formatting
+
+  openxlsx::addStyle(
+    wb = wb,
+    sheet = ws_penguins,
+    style = date_style,
+    rows = first_row + seq_len(nrow(data_penguins_mod)),
+    cols = which(names(data_penguins_mod) == "date_modification"),
+    gridExpand = TRUE
+  )
+
+  # openxlsx::openXL(wb)
+
   #--- add drop-down values to size --------------------------------------------
   # add worksheet "Drop-down values" to the workbook
   ws_drop_down_values <- openxlsx::addWorksheet(
@@ -164,6 +178,7 @@ write_penguins <- function(data_penguins,
   # openxlsx::openXL(wb)
 
   #--- add colors for drop-down values to size ---------------------------------
+  # see https://ycphs.github.io/openxlsx/articles/Formatting.html#conditional-formatting
   openxlsx::conditionalFormatting(wb,
     sheet = ws_penguins,
     cols = which(names(data_penguins_mod) == "size"),

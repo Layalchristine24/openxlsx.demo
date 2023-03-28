@@ -64,3 +64,6 @@ style_red <- openxlsx::createStyle(
   bgFill = "#CC0000",
   fontColour = "#EEEEEE"
 )
+
+# define date_style
+date_style <- createStyle(numFmt = "dd/mm/yyyy")
