@@ -66,4 +66,4 @@ style_red <- openxlsx::createStyle(
 )
 
 # define date_style
-date_style <- createStyle(numFmt = "dd/mm/yyyy")
+date_style <- openxlsx::createStyle(numFmt = "dd/mm/yyyy")
