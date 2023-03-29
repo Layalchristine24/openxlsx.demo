@@ -253,7 +253,7 @@ write_penguins <- function(data_penguins,
     style = style_unlocked,
     rows = first_row + seq_len(nrow(data_penguins_mod)),
     cols = which(names(data_penguins_mod) == "size"),
-    gridExpand = FALSE
+    gridExpand = TRUE
   )
 
   # apply unlocked style to Comments column
@@ -263,7 +263,7 @@ write_penguins <- function(data_penguins,
     style = style_unlocked,
     rows = first_row + seq_len(nrow(data_penguins_raw)),
     cols = which(names(data_penguins_raw) == "Comments"),
-    gridExpand = FALSE
+    gridExpand = TRUE
   )
 
   # openxlsx::openXL(wb)
@@ -277,7 +277,7 @@ write_penguins <- function(data_penguins,
     style = style_locked,
     rows = first_row + seq_len(nrow(data_penguins_mod)),
     cols = which(names(data_penguins_mod) == "any_comment"),
-    gridExpand = FALSE
+    gridExpand = TRUE
   )
 
   # openxlsx::openXL(wb)
@@ -367,10 +367,10 @@ write_penguins <- function(data_penguins,
   # openxlsx::openXL(wb)
 
   #--- Internal Hyperlink ------------------------------------------------------
-  # internal hyperlink between any_comments (sheet penguins) and Comments (sheet
-  # penguins_raw)
+  # internal hyperlink between any_comments (sheet "penguins") and Comments (sheet
+  # "penguins_raw")
 
-  # sheet data_ws_name should be linked to medata_ws_name
+  # sheet "penguins" should be linked to "penguins_raw"
   write_hyperlink(
     dataset = data_penguins_mod,
     metadata = data_penguins_raw,
