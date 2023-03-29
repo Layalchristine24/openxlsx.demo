@@ -6,8 +6,12 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of openxlsx.demo is to create an excel file from scratch only
+The goal of `openxlsx.demo` is to create an excel file from scratch only
 using `openxlsx` and adding some features one could be interested in.
+
+You can find an explanation about how the `openxlsx` functions are used
+in the `openxlsx.demo` package in my blog post
+[`Working with {openxlsx}`](https://layalchristinelettry.rbind.io/blog/202303_openxlsx/).
 
 ## `openxlsx` Documentation
 
