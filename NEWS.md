@@ -1,5 +1,16 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# openxlsx.demo 0.1.0.9000
+
+## Bug fixes
+
+- Write dplyr:: before mutate.
+
+- Set gridExpand = TRUE instead of FALSE and correct some comments.
+
+- Add openxlsx before createStyle.
+
+
 # openxlsx.demo 0.1.0
 
 ## Features
