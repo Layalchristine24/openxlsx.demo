@@ -22,7 +22,7 @@ write_hyperlink <- function(dataset,
                             meta_ws_name,
                             wb) {
   hyperlink_tib <- dataset |>
-    mutate(
+    dplyr::mutate(
       # find the metadata rows where id matches `Individual ID`
       list_indices_indicators_to_link = as.integer(purrr::map(
         id,
