@@ -342,8 +342,8 @@ write_penguins <- function(data_penguins,
 
   # openxlsx::openXL(wb)
 
-  #--- freeze the first row and first column -----------------------------------
-  # freeze the first row and the first column in ws_penguins
+  #--- freeze a worksheet pane -------------------------------------------------
+  # freeze the first rows up to (first_row + 1L) and the first column in ws_penguins
   openxlsx::freezePane(
     wb = wb,
     sheet = ws_penguins,
@@ -351,7 +351,7 @@ write_penguins <- function(data_penguins,
     firstActiveCol = 2
   )
 
-  # freeze the first row in meta_ws_name
+  # freeze the first rows up to (first_row + 1L) in meta_ws_name
   openxlsx::freezePane(
     wb = wb,
     sheet = ws_penguins_raw,
