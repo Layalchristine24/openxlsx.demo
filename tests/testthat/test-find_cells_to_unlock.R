@@ -1,7 +1,7 @@
 test_that("find_cells_to_unlock finds the right cells to unlock", {
   expect_equal(
     sum(find_cells_to_unlock(
-      data = tibble::tribble(
+      data = tribble(
         ~a, ~e, ~f, ~d, ~b, ~c,
         NA, "u", NA, "O", "f", "g",
         "e", NA, "g", "e", "V", "g",

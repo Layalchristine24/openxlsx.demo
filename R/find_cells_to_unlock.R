@@ -13,12 +13,12 @@
 find_cells_to_unlock <- function(data,
                                  ...) {
   # indices of columns to be unlocked
-  args_unlocked_cols <- tibble::lst(...)
+  args_unlocked_cols <- lst(...)
   unlocked_cols <- str_remove_all(names(args_unlocked_cols), '["]') |>
     map_dbl(~ match(.x, names(data)))
 
   # find cells which are NA
-  tibble::tibble(rows = seq_len(nrow(data))) |>
+  tibble(rows = seq_len(nrow(data))) |>
     tidyr::crossing(columns = unlocked_cols) |>
     dplyr::mutate(
       to_unlock = map2_int(rows, columns, function(row, col) {
