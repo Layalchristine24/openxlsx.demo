@@ -1,5 +1,26 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# openxlsx.demo 0.2.0.9001
+
+## Bug fixes
+
+- Remove 'dplyr'.
+
+- Fix conflicts.
+
+- Remove 'dplyr::'.
+
+## Build system, external dependencies
+
+- Add special dependency sheetVisibility<-.
+
+- Add more dependencies.
+
+## Documentation
+
+- Update man file.
+
+
 # openxlsx.demo 0.2.0.9000
 
 ## Bug fixes
