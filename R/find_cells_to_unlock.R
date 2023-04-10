@@ -22,7 +22,7 @@ find_cells_to_unlock <- function(data,
     crossing(columns = unlocked_cols) |>
     mutate(
       to_unlock = map2_int(rows, columns, function(row, col) {
-        dplyr::if_else(is.na(data[[row, col]]), 1L, 0L)
+        if_else(is.na(data[[row, col]]), 1L, 0L)
       })
     ) |>
     select(rows, columns, to_unlock) |>
