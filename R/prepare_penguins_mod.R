@@ -18,5 +18,5 @@ prepare_penguins_mod <- function(data,
       date_modification = today()
     ) |>
     # rearrange the columns to have 'year' as the first column
-    dplyr::select("year", "id", tidyselect::everything()) # use quotes to select global variables
+    dplyr::select("year", "id", everything()) # use quotes to select global variables
 }
