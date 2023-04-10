@@ -19,7 +19,7 @@ find_cells_to_unlock <- function(data,
 
   # find cells which are NA
   tibble(rows = seq_len(nrow(data))) |>
-    tidyr::crossing(columns = unlocked_cols) |>
+    crossing(columns = unlocked_cols) |>
     dplyr::mutate(
       to_unlock = map2_int(rows, columns, function(row, col) {
         dplyr::if_else(is.na(data[[row, col]]), 1L, 0L)
