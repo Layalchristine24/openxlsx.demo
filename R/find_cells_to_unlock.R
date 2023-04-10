@@ -14,7 +14,7 @@ find_cells_to_unlock <- function(data,
                                  ...) {
   # indices of columns to be unlocked
   args_unlocked_cols <- tibble::lst(...)
-  unlocked_cols <- stringr::str_remove_all(names(args_unlocked_cols), '["]') |>
+  unlocked_cols <- str_remove_all(names(args_unlocked_cols), '["]') |>
     map_dbl(~ match(.x, names(data)))
 
   # find cells which are NA

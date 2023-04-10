@@ -399,7 +399,7 @@ write_penguins <- function(data_penguins,
     wb = wb,
     file = file.path(
       folder_xlsx_file,
-      stringr::str_c(Sys.Date(), "penguins.xlsx", sep = "_")
+      str_c(Sys.Date(), "penguins.xlsx", sep = "_")
     ),
     overwrite = TRUE
   )
