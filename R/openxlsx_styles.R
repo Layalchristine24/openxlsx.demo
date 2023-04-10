@@ -1,5 +1,5 @@
 # define style style_variables_names
-style_variables_names <- openxlsx::createStyle(
+style_variables_names <- createStyle(
   fontSize = 12,
   halign = "left",
   valign = "top",
@@ -10,7 +10,7 @@ style_variables_names <- openxlsx::createStyle(
 )
 
 # create style to wrap text
-style_body <- openxlsx::createStyle(
+style_body <- createStyle(
   fontSize = 12,
   halign = "left",
   valign = "top",
@@ -18,7 +18,7 @@ style_body <- openxlsx::createStyle(
 )
 
 # define style style_unlocked
-style_unlocked <- openxlsx::createStyle(
+style_unlocked <- createStyle(
   fontSize = 12,
   halign = "left",
   valign = "top",
@@ -29,7 +29,7 @@ style_unlocked <- openxlsx::createStyle(
 )
 
 # define style style_locked
-style_locked <- openxlsx::createStyle(
+style_locked <- createStyle(
   fontSize = 12,
   halign = "left",
   valign = "top",
@@ -40,30 +40,30 @@ style_locked <- openxlsx::createStyle(
 )
 
 # define style gray
-style_gray <- openxlsx::createStyle(
+style_gray <- createStyle(
   bgFill = "#AAAAAA"
 )
 
 # define style blue
-style_blue <- openxlsx::createStyle(
+style_blue <- createStyle(
   bgFill = "#6FA8DC"
 )
 
 # define style gray
-style_green <- openxlsx::createStyle(
+style_green <- createStyle(
   bgFill = "#00AA00"
 )
 
 # define style yellow
-style_yellow <- openxlsx::createStyle(
+style_yellow <- createStyle(
   bgFill = "#CCCC00"
 )
 
 # define style red
-style_red <- openxlsx::createStyle(
+style_red <- createStyle(
   bgFill = "#CC0000",
   fontColour = "#EEEEEE"
 )
 
 # define date_style
-date_style <- openxlsx::createStyle(numFmt = "dd/mm/yyyy")
+date_style <- createStyle(numFmt = "dd/mm/yyyy")

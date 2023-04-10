@@ -48,7 +48,7 @@ write_hyperlink <- function(dataset,
     )
 
   # write the hyperlink
-  openxlsx::writeFormula(
+  writeFormula(
     wb = wb,
     sheet = excel_sheet,
     x = hyperlink_tib$link_rewritten,

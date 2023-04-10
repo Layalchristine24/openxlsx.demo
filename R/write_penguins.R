@@ -30,17 +30,17 @@ write_penguins <- function(data_penguins,
 
   #--- create workbook ---------------------------------------------------------
   # create a new workbook
-  wb <- openxlsx::createWorkbook()
+  wb <- createWorkbook()
 
   #--- create worksheet --------------------------------------------------------
   # add a new worksheet to the workbook
-  ws_penguins <- openxlsx::addWorksheet(
+  ws_penguins <- addWorksheet(
     wb = wb,
     sheetName = "penguins"
   )
 
   # add a new worksheet to the workbook
-  ws_penguins_raw <- openxlsx::addWorksheet(
+  ws_penguins_raw <- addWorksheet(
     wb = wb,
     sheetName = "penguins_raw"
   )
@@ -59,7 +59,7 @@ write_penguins <- function(data_penguins,
 
   #--- write data --------------------------------------------------------------
   # write the palmerpenguins::penguins data
-  openxlsx::writeData(
+  writeData(
     wb = wb,
     sheet = ws_penguins,
     x = data_penguins_mod,
@@ -69,7 +69,7 @@ write_penguins <- function(data_penguins,
   )
 
   # write palmerpenguins::penguins_raw data
-  openxlsx::writeData(
+  writeData(
     wb = wb,
     sheet = ws_penguins_raw,
     x = data_penguins_raw,
@@ -79,11 +79,11 @@ write_penguins <- function(data_penguins,
     withFilter = TRUE # filter on everywhere
   )
 
-  # openxlsx::openXL(wb)
+  # openXL(wb)
 
   # --- set columns width ------------------------------------------------------
   # set all cols but any_comment to a specific width in ws_penguins
-  openxlsx::setColWidths(
+  setColWidths(
     wb = wb,
     sheet = ws_penguins,
     cols = which(names(data_penguins_mod) != "any_comment"),
@@ -91,19 +91,19 @@ write_penguins <- function(data_penguins,
   )
 
   # set all cols to a specific width in ws_penguins_raw
-  openxlsx::setColWidths(
+  setColWidths(
     wb = wb,
     sheet = ws_penguins_raw,
     cols = seq_len(ncol(data_penguins_raw)),
     widths = 22 # "auto"for automatic sizing
   )
 
-  # openxlsx::openXL(wb)
+  # openXL(wb)
 
   # --- wrap text --------------------------------------------------------------
   # add style_body to wrap text in ws_penguins
   # (see option 'wrapText = TRUE' in 'createStyle()')
-  openxlsx::addStyle(
+  addStyle(
     wb = wb,
     sheet = ws_penguins,
     style = style_body,
@@ -114,7 +114,7 @@ write_penguins <- function(data_penguins,
 
   # add style_body to wrap text in ws_penguins_raw
   # (see option 'wrapText = TRUE' in 'createStyle()')
-  openxlsx::addStyle(
+  addStyle(
     wb = wb,
     sheet = ws_penguins_raw,
     style = style_body,
@@ -123,12 +123,12 @@ write_penguins <- function(data_penguins,
     gridExpand = TRUE # apply style to all combinations of rows and cols
   )
 
-  # openxlsx::openXL(wb)
+  # openXL(wb)
 
   #--- date formatting ---------------------------------------------------------
   # see https://ycphs.github.io/openxlsx/articles/Formatting.html#date-formatting
 
-  openxlsx::addStyle(
+  addStyle(
     wb = wb,
     sheet = ws_penguins,
     style = date_style,
@@ -137,11 +137,11 @@ write_penguins <- function(data_penguins,
     gridExpand = TRUE
   )
 
-  # openxlsx::openXL(wb)
+  # openXL(wb)
 
   #--- add drop-down values to size --------------------------------------------
   # add worksheet "Drop-down values" to the workbook
-  ws_drop_down_values <- openxlsx::addWorksheet(
+  ws_drop_down_values <- addWorksheet(
     wb = wb,
     sheetName = "drop-down-values"
   )
@@ -156,17 +156,17 @@ write_penguins <- function(data_penguins,
   )
 
   # add drop-down values dataframe to the sheet "Drop-down values"
-  openxlsx::writeData(
+  writeData(
     wb = wb,
     sheet = "drop-down-values",
     x = options,
     startCol = 1
   )
 
-  # openxlsx::openXL(wb)
+  # openXL(wb)
 
   # add drop-downs
-  openxlsx::dataValidation(
+  dataValidation(
     wb = wb,
     sheet = ws_penguins,
     cols = which(names(data_penguins_mod) == "size"),
@@ -175,11 +175,11 @@ write_penguins <- function(data_penguins,
     type = "list",
     value = "'drop-down-values'!$A$1:$A$5"
   )
-  # openxlsx::openXL(wb)
+  # openXL(wb)
 
   #--- add colors for drop-down values to size ---------------------------------
   # see https://ycphs.github.io/openxlsx/articles/Formatting.html#conditional-formatting
-  openxlsx::conditionalFormatting(wb,
+  conditionalFormatting(wb,
     sheet = ws_penguins,
     cols = which(names(data_penguins_mod) == "size"),
     rows = first_row + seq_len(nrow(data_penguins_mod)),
@@ -188,7 +188,7 @@ write_penguins <- function(data_penguins,
     style = style_gray
   )
 
-  openxlsx::conditionalFormatting(wb,
+  conditionalFormatting(wb,
     sheet = ws_penguins,
     cols = which(names(data_penguins_mod) == "size"),
     rows = first_row + seq_len(nrow(data_penguins_mod)),
@@ -197,7 +197,7 @@ write_penguins <- function(data_penguins,
     style = style_blue
   )
 
-  openxlsx::conditionalFormatting(wb,
+  conditionalFormatting(wb,
     sheet = ws_penguins,
     cols = which(names(data_penguins_mod) == "size"),
     rows = first_row + seq_len(nrow(data_penguins_mod)),
@@ -206,7 +206,7 @@ write_penguins <- function(data_penguins,
     style = style_green
   )
 
-  openxlsx::conditionalFormatting(wb,
+  conditionalFormatting(wb,
     sheet = ws_penguins,
     cols = which(names(data_penguins_mod) == "size"),
     rows = first_row + seq_len(nrow(data_penguins_mod)),
@@ -215,7 +215,7 @@ write_penguins <- function(data_penguins,
     style = style_yellow
   )
 
-  openxlsx::conditionalFormatting(wb,
+  conditionalFormatting(wb,
     sheet = ws_penguins,
     cols = which(names(data_penguins_mod) == "size"),
     rows = first_row + seq_len(nrow(data_penguins_mod)),
@@ -223,11 +223,11 @@ write_penguins <- function(data_penguins,
     rule = "tiny", # condition under which to apply the formatting
     style = style_red
   )
-  # openxlsx::openXL(wb)
+  # openXL(wb)
 
   #--- protect worksheets ------------------------------------------------------
   # protect the worksheet ws_penguins
-  openxlsx::protectWorksheet(
+  protectWorksheet(
     wb = wb,
     sheet = ws_penguins,
     lockAutoFilter = FALSE, # allows filtering
@@ -235,19 +235,19 @@ write_penguins <- function(data_penguins,
   )
 
   # protect the worksheet ws_penguins_raw
-  openxlsx::protectWorksheet(
+  protectWorksheet(
     wb = wb,
     sheet = ws_penguins_raw,
     lockAutoFilter = FALSE, # allows filtering
     lockFormattingCells = FALSE # allows formatting cells
   )
 
-  # openxlsx::openXL(wb)
+  # openXL(wb)
 
   #--- unlock column size (ws_penguins) and Comments (ws_penguins_raw) ---------
 
   # apply unlocked style to size column
-  openxlsx::addStyle(
+  addStyle(
     wb = wb,
     sheet = ws_penguins,
     style = style_unlocked,
@@ -257,7 +257,7 @@ write_penguins <- function(data_penguins,
   )
 
   # apply unlocked style to Comments column
-  openxlsx::addStyle(
+  addStyle(
     wb = wb,
     sheet = ws_penguins_raw,
     style = style_unlocked,
@@ -266,12 +266,12 @@ write_penguins <- function(data_penguins,
     gridExpand = TRUE
   )
 
-  # openxlsx::openXL(wb)
+  # openXL(wb)
 
   #--- lock column any_comments in ws_penguins ---------------------------------
 
   # apply locked style to any_comment column
-  openxlsx::addStyle(
+  addStyle(
     wb = wb,
     sheet = ws_penguins,
     style = style_locked,
@@ -280,7 +280,7 @@ write_penguins <- function(data_penguins,
     gridExpand = TRUE
   )
 
-  # openxlsx::openXL(wb)
+  # openXL(wb)
 
   #--- unlock specific cells ---------------------------------------------------
   # indices of columns to be unlocked if no value in a cell
@@ -296,7 +296,7 @@ write_penguins <- function(data_penguins,
 
 
   # apply unlocked style to isna_cases cells
-  openxlsx::addStyle(
+  addStyle(
     wb = wb,
     sheet = ws_penguins,
     style = style_unlocked,
@@ -306,7 +306,7 @@ write_penguins <- function(data_penguins,
   )
 
   # apply unlocked style to cells in 1st row of ws_penguins (for comments)
-  openxlsx::addStyle(
+  addStyle(
     wb = wb,
     sheet = ws_penguins,
     style = style_unlocked,
@@ -316,7 +316,7 @@ write_penguins <- function(data_penguins,
   )
 
   # apply unlocked style to cells in 1st row of ws_penguins_raw (for comments)
-  openxlsx::addStyle(
+  addStyle(
     wb = wb,
     sheet = ws_penguins_raw,
     style = style_unlocked,
@@ -325,11 +325,11 @@ write_penguins <- function(data_penguins,
     gridExpand = TRUE
   )
 
-  # openxlsx::openXL(wb)
+  # openXL(wb)
 
   #--- add filter for several variables ----------------------------------------
   # add filtering possibility
-  openxlsx::addFilter(
+  addFilter(
     wb = wb,
     sheet = ws_penguins,
     rows = first_row,
@@ -340,11 +340,11 @@ write_penguins <- function(data_penguins,
     )
   )
 
-  # openxlsx::openXL(wb)
+  # openXL(wb)
 
   #--- freeze the first row and first column -----------------------------------
   # freeze the first row and the first column in ws_penguins
-  openxlsx::freezePane(
+  freezePane(
     wb = wb,
     sheet = ws_penguins,
     firstActiveRow = first_row + 1L,
@@ -352,19 +352,19 @@ write_penguins <- function(data_penguins,
   )
 
   # freeze the first row in meta_ws_name
-  openxlsx::freezePane(
+  freezePane(
     wb = wb,
     sheet = ws_penguins_raw,
     firstActiveRow = first_row + 1L
   )
 
-  # openxlsx::openXL(wb)
+  # openXL(wb)
 
   #--- hide sheet --------------------------------------------------------------
   # hide sheet "drop-down-values"
-  openxlsx::sheetVisibility(wb)[ws_drop_down_values] <- FALSE
+  sheetVisibility(wb)[ws_drop_down_values] <- FALSE
 
-  # openxlsx::openXL(wb)
+  # openXL(wb)
 
   #--- Internal Hyperlink ------------------------------------------------------
   # internal hyperlink between any_comments (sheet "penguins") and Comments (sheet
@@ -384,18 +384,18 @@ write_penguins <- function(data_penguins,
   # as the comments length is coming from another worksheet and the formula
   # of the internal hyperlink is short, the wrap_text option does not work.
   # Therefore, we need a larger width for the column any_comment.
-  openxlsx::setColWidths(
+  setColWidths(
     wb = wb,
     sheet = ws_penguins,
     cols = which(names(data_penguins_mod) == "any_comment"),
     widths = 60 # "auto"for automatic sizing
   )
 
-  # openxlsx::openXL(wb)
+  # openXL(wb)
 
   #--- save the workbook -------------------------------------------------------
   # save the workbook
-  openxlsx::saveWorkbook(
+  saveWorkbook(
     wb = wb,
     file = file.path(
       folder_xlsx_file,
