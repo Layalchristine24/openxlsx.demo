@@ -21,7 +21,7 @@ Find indices of rows and columns of data to be unlocked
 \examples{
 #' @examples
 #' \dontrun{
-#' data <- tibble::tribble(
+#' data <- tribble(
 #'   ~a, ~year, ~f, ~d, ~b, ~c,
 #'   NA, "2019", "g", NA, "f", NA,
 #'   "e", NA, "g", "e", NA, NA,
