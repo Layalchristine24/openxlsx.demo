@@ -15,8 +15,8 @@ prepare_penguins_mod <- function(data,
       size = character(length = nrow(data)),
       any_comment = character(length = nrow(data)),
       id = data_raw$`Individual ID`,
-      date_modification = lubridate::today()
+      date_modification = today()
     ) |>
     # rearrange the columns to have 'year' as the first column
-    select("year", "id", tidyselect::everything()) # use quotes to select global variables
+    select("year", "id", everything()) # use quotes to select global variables
 }

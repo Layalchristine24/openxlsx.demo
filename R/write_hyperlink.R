@@ -24,7 +24,7 @@ write_hyperlink <- function(dataset,
   hyperlink_tib <- dataset |>
     mutate(
       # find the metadata rows where id matches `Individual ID`
-      list_indices_indicators_to_link = as.integer(purrr::map(
+      list_indices_indicators_to_link = as.integer(map(
         id,
         ~ match(
           .x,
@@ -48,7 +48,7 @@ write_hyperlink <- function(dataset,
     )
 
   # write the hyperlink
-  openxlsx::writeFormula(
+  writeFormula(
     wb = wb,
     sheet = excel_sheet,
     x = hyperlink_tib$link_rewritten,
