@@ -23,6 +23,7 @@
 #' @importFrom openxlsx saveWorkbook
 #' @importFrom openxlsx setColWidths
 #' @importFrom openxlsx sheetVisibility
+#' @importFrom openxlsx sheetVisibility<-
 #' @importFrom openxlsx writeData
 #' @importFrom openxlsx writeFormula
 #' @importFrom purrr map
