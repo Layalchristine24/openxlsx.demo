@@ -291,8 +291,8 @@ write_penguins <- function(data_penguins,
 
   # subtable with only na cases
   isna_cases <- tib_indices |>
-    dplyr::filter(to_unlock == 1) |>
-    dplyr::arrange(rows, columns)
+    filter(to_unlock == 1) |>
+    arrange(rows, columns)
 
 
   # apply unlocked style to isna_cases cells

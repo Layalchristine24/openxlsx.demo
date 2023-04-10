@@ -20,11 +20,11 @@ find_cells_to_unlock <- function(data,
   # find cells which are NA
   tibble::tibble(rows = seq_len(nrow(data))) |>
     tidyr::crossing(columns = unlocked_cols) |>
-    dplyr::mutate(
+    mutate(
       to_unlock = purrr::map2_int(rows, columns, function(row, col) {
-        dplyr::if_else(is.na(data[[row, col]]), 1L, 0L)
+        if_else(is.na(data[[row, col]]), 1L, 0L)
       })
     ) |>
-    dplyr::select(rows, columns, to_unlock) |>
-    dplyr::ungroup()
+    select(rows, columns, to_unlock) |>
+    ungroup()
 }
